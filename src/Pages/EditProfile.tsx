@@ -1,6 +1,6 @@
 import { joiResolver } from "@hookform/resolvers/joi";
 import axios from "axios";
-import { FloatingLabel, Label, Checkbox, Button } from "flowbite-react";
+import { FloatingLabel, Button } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import RegisterSchema from "../Validation/RegisterSchema.joi";
