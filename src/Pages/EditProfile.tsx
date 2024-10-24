@@ -4,6 +4,8 @@ import { FloatingLabel, Label, Checkbox, Button } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import RegisterSchema from "../Validation/RegisterSchema.joi";
+import { useSelector } from "react-redux";
+import { TRootState } from "../Store/BigPie";
 
 const EditProfile = () => {
     const initialData = {
@@ -30,7 +32,7 @@ const EditProfile = () => {
         "isBusiness": false
     }
 
-
+    const user = useSelector((state: TRootState) => state.UserSlice.user);
 
     const { register, handleSubmit, formState: { errors, isValid } } = useForm({
         defaultValues: initialData,
