@@ -72,6 +72,7 @@ const MyCards = () => {
             )
         );
     }
+
     const likeUnlikeCard = async (card: TCard) => {
         try {
             const res = await axios.patch("https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/" + card._id);
@@ -138,43 +139,46 @@ const MyCards = () => {
 
     return (
         <>
-            <div className="p-8 font-sans h-[25vh] bg-sky-200 dark:bg-gray-500 dark:shadow-lg">
+            <div className="p-8 font-sans bg-sky-200 dark:bg-gray-500 dark:shadow-lg">
                 <div className="text-center dark:text-white">
-                    <h1 className="m-3 text-6xl">Cards Page</h1>
-                    <p className="text-2xl">Here you can find your own cards</p>
+                    <h1 className="m-3 text-4xl sm:text-6xl">Cards Page</h1>
+                    <p className="text-lg sm:text-2xl">Here you can find your own cards</p>
                 </div>
             </div>
             {cards.length > 0 ? (
-                <div className="flex flex-wrap justify-center gap-5 m-5">
+                <div className="flex flex-wrap justify-center gap-5 p-5">
                     {searchCards()!.map((item: TCard) => (
-                        <Card key={item._id} className="w-[25vw]">
+                        <Card key={item._id} className="w-full sm:w-80 lg:w-60 xl:w-72">
                             <img
-                                className="w-[90vw] sm:w-[70vw] md:w-[50vw] lg:w-[40vw] xl:w-[30vw]"
+                                className="object-cover w-full h-40"
                                 src={item.image.url}
                                 onClick={() => navToCard(item._id)}
-                                alt={item.image.alt} />
-                            <h1 className="text-2xl dark:text-white">{item.title}</h1>
-                            <h4 className="text-lg dark:text-white">{item.subtitle}</h4>
-                            <p className="text-sm dark:text-white">{item.description}</p>
-                            <p className="text-sm dark:text-white">{item.phone}</p>
-                            <p className="text-sm dark:text-white">{item.address.city}, {item.address.street} {item.address.houseNumber}</p>
-                            <hr />
-                            <div className="flex gap-4">
-                                {user.user && (
-                                    <FaHeart
+                                alt={item.image.alt}
+                            />
+                            <div className="p-4">
+                                <h1 className="text-xl dark:text-white">{item.title}</h1>
+                                <h4 className="text-md dark:text-white">{item.subtitle}</h4>
+                                <p className="text-sm dark:text-white">{item.description}</p>
+                                <p className="text-sm dark:text-white">{item.phone}</p>
+                                <p className="text-sm dark:text-white">{item.address.city}, {item.address.street} {item.address.houseNumber}</p>
+                                <hr />
+                                <div className="flex gap-4 mt-3">
+                                    {user.user && (
+                                        <FaHeart
+                                            className="cursor-pointer"
+                                            color={!isLikedCard(item) ? 'black' : 'red'}
+                                            onClick={() => likeUnlikeCard(item)}
+                                        />
+                                    )}
+                                    <FaTrashAlt
+                                        onClick={() => deleteCard(item)}
                                         className="cursor-pointer"
-                                        color={!isLikedCard(item) ? 'black' : 'red'}
-                                        onClick={() => likeUnlikeCard(item)}
                                     />
-                                )}
-                                <FaTrashAlt
-                                    onClick={() => deleteCard(item)}
-                                    className="cursor-pointer"
-                                />
-                                <FaPencil
-                                    className="cursor-pointer"
-                                    onClick={() => handleEditClick(item)}
-                                />
+                                    <FaPencil
+                                        className="cursor-pointer"
+                                        onClick={() => handleEditClick(item)}
+                                    />
+                                </div>
                             </div>
                         </Card>
                     ))}

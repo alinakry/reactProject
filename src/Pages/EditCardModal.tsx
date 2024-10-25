@@ -38,7 +38,6 @@ interface CardFormData {
 const EditCard = ({ openModal, setOpenModal, card, onUpdateCard }: EditCardProps) => {
     const emailInputRef = useRef<HTMLInputElement>(null);
 
-
     const {
         register,
         handleSubmit,
@@ -109,201 +108,117 @@ const EditCard = ({ openModal, setOpenModal, card, onUpdateCard }: EditCardProps
             popup
             onClose={() => setOpenModal(false)}
             initialFocus={emailInputRef}
+            className="w-full max-w-[90vw] sm:max-w-[80vw] md:max-w-[70vw] lg:max-w-[60vw] xl:max-w-[50vw] mx-auto"
         >
             <Modal.Header />
             <Modal.Body>
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 w-[20vw] flex flex-col">
-                    <h1 className="text-2xl font-bold text-cyan-400 dark:text-cyan-700">
+                <form
+                    onSubmit={handleSubmit(onSubmit)}
+                    className="space-y-6 w-full max-w-[90vw] sm:max-w-[70vw] lg:max-w-[50vw] xl:max-w-[40vw] flex flex-col mx-auto"
+                >
+                    <h1 className="text-2xl font-bold text-center text-cyan-400 dark:text-cyan-700">
                         Edit Card
                     </h1>
 
                     <div>
-                        <FloatingLabel
-                            type="text"
-                            label="Title"
-                            variant="filled"
-                            {...register("title")}
-                        />
+                        <FloatingLabel label="Title" variant="filled" {...register("title")} />
                         {errors.title && (
                             <span className="text-sm text-red-500">{errors.title.message}</span>
                         )}
                     </div>
 
                     <div>
-                        <FloatingLabel
-                            type="text"
-                            label="Subtitle"
-                            variant="filled"
-                            {...register("subtitle")}
-                        />
+                        <FloatingLabel label="Subtitle" variant="filled" {...register("subtitle")} />
                         {errors.subtitle && (
-                            <span className="text-sm text-red-500">
-                                {errors.subtitle.message}
-                            </span>
+                            <span className="text-sm text-red-500">{errors.subtitle.message}</span>
                         )}
                     </div>
 
                     <div>
-                        <Textarea
-                            className="resize:none"
-                            {...register("description")}
-                        />
+                        <Textarea className="resize-none" {...register("description")} />
                         {errors.description && (
-                            <span className="text-sm text-red-500">
-                                {errors.description.message}
-                            </span>
+                            <span className="text-sm text-red-500">{errors.description.message}</span>
                         )}
                     </div>
 
                     <div>
-                        <FloatingLabel
-                            type="tel"
-                            label="Phone Number"
-                            variant="filled"
-                            {...register("phone")}
-                        />
+                        <FloatingLabel label="Phone Number" variant="filled" {...register("phone")} />
                         {errors.phone && (
                             <span className="text-sm text-red-500">{errors.phone.message}</span>
                         )}
                     </div>
 
                     <div>
-                        <FloatingLabel
-                            type="email"
-                            label="Email"
-                            variant="filled"
-                            {...register("email")}
-                        />
+                        <FloatingLabel label="Email" variant="filled" {...register("email")} />
                         {errors.email && (
                             <span className="text-sm text-red-500">{errors.email.message}</span>
                         )}
                     </div>
 
                     <div>
-                        <FloatingLabel
-                            type="url"
-                            label="Web"
-                            variant="filled"
-                            {...register("web")}
-                        />
+                        <FloatingLabel label="Web" variant="filled" {...register("web")} />
                         {errors.web && (
                             <span className="text-sm text-red-500">{errors.web.message}</span>
                         )}
                     </div>
 
                     <div>
-                        <FloatingLabel
-                            type="url"
-                            label="Image URL"
-                            variant="filled"
-                            {...register("image.url")}
-                        />
+                        <FloatingLabel label="Image URL" variant="filled" {...register("image.url")} />
                         {errors.image?.url && (
-                            <span className="text-sm text-red-500">
-                                {errors.image.url.message}
-                            </span>
+                            <span className="text-sm text-red-500">{errors.image.url.message}</span>
                         )}
                     </div>
 
                     <div>
-                        <FloatingLabel
-                            type="text"
-                            label="Image ALT"
-                            variant="filled"
-                            {...register("image.alt")}
-                        />
+                        <FloatingLabel label="Image ALT" variant="filled" {...register("image.alt")} />
                         {errors.image?.alt && (
-                            <span className="text-sm text-red-500">
-                                {errors.image.alt.message}
-                            </span>
+                            <span className="text-sm text-red-500">{errors.image.alt.message}</span>
                         )}
                     </div>
 
                     <div>
-                        <FloatingLabel
-                            type="text"
-                            label="State"
-                            variant="filled"
-                            {...register("address.state")}
-                        />
+                        <FloatingLabel label="State" variant="filled" {...register("address.state")} />
                         {errors.address?.state && (
-                            <span className="text-sm text-red-500">
-                                {errors.address.state.message}
-                            </span>
+                            <span className="text-sm text-red-500">{errors.address.state.message}</span>
                         )}
                     </div>
 
                     <div>
-                        <FloatingLabel
-                            type="text"
-                            label="Country"
-                            variant="filled"
-                            {...register("address.country")}
-                        />
+                        <FloatingLabel label="Country" variant="filled" {...register("address.country")} />
                         {errors.address?.country && (
-                            <span className="text-sm text-red-500">
-                                {errors.address.country.message}
-                            </span>
+                            <span className="text-sm text-red-500">{errors.address.country.message}</span>
                         )}
                     </div>
 
                     <div>
-                        <FloatingLabel
-                            type="text"
-                            label="City"
-                            variant="filled"
-                            {...register("address.city")}
-                        />
+                        <FloatingLabel label="City" variant="filled" {...register("address.city")} />
                         {errors.address?.city && (
-                            <span className="text-sm text-red-500">
-                                {errors.address.city.message}
-                            </span>
+                            <span className="text-sm text-red-500">{errors.address.city.message}</span>
                         )}
                     </div>
 
                     <div>
-                        <FloatingLabel
-                            type="text"
-                            label="Street"
-                            variant="filled"
-                            {...register("address.street")}
-                        />
+                        <FloatingLabel label="Street" variant="filled" {...register("address.street")} />
                         {errors.address?.street && (
-                            <span className="text-sm text-red-500">
-                                {errors.address.street.message}
-                            </span>
+                            <span className="text-sm text-red-500">{errors.address.street.message}</span>
                         )}
                     </div>
 
                     <div>
-                        <FloatingLabel
-                            type="number"
-                            label="House Number"
-                            variant="filled"
-                            {...register("address.houseNumber")}
-                        />
+                        <FloatingLabel label="House Number" variant="filled" {...register("address.houseNumber")} />
                         {errors.address?.houseNumber && (
-                            <span className="text-sm text-red-500">
-                                {errors.address.houseNumber.message}
-                            </span>
+                            <span className="text-sm text-red-500">{errors.address.houseNumber.message}</span>
                         )}
                     </div>
 
                     <div>
-                        <FloatingLabel
-                            type="number"
-                            label="Zip Code"
-                            variant="filled"
-                            {...register("address.zip")}
-                        />
+                        <FloatingLabel label="Zip Code" variant="filled" {...register("address.zip")} />
                         {errors.address?.zip && (
-                            <span className="text-sm text-red-500">
-                                {errors.address.zip.message}
-                            </span>
+                            <span className="text-sm text-red-500">{errors.address.zip.message}</span>
                         )}
                     </div>
 
-                    <Button type="submit" disabled={!isValid}>
+                    <Button type="submit" disabled={!isValid} className="w-full">
                         Update Card
                     </Button>
                 </form>
