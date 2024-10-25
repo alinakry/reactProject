@@ -14,10 +14,21 @@ const Home = () => {
     const user = useSelector((state: TRootState) => state.UserSlice);
 
     const getCards = async () => {
-        const res = await axios.get(
-            "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards",
-        );
-        setCards(res.data);
+        try {
+            const res = await axios.get(
+                "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards",
+            );
+            setCards(res.data);
+        } catch {
+            Swal.fire({
+                title: "failed!",
+                icon: "error",
+                timerProgressBar: true,
+                timer: 2000,
+                toast: true,
+                showCloseButton: true,
+            });
+        }
     };
 
     const SearchWord = useSelector((state: TRootState) => state.SearchSlice.search);

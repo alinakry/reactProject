@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
 import { TCard } from "../Types/TCard";
+import Swal from "sweetalert2";
 
 const CardDetails = () => {
     const [card, setCard] = useState<TCard>();
@@ -9,9 +10,19 @@ const CardDetails = () => {
 
 
     const getData = async () => {
-        const res = await axios.get("https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/" + id);
-        setCard(res.data);
-        console.log(res.data);
+        try {
+            const res = await axios.get("https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/" + id);
+            setCard(res.data);
+        } catch {
+            Swal.fire({
+                title: "failed!",
+                icon: "error",
+                timerProgressBar: true,
+                timer: 2000,
+                toast: true,
+                showCloseButton: true,
+            });
+        }
     }
 
 

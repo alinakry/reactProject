@@ -1,15 +1,9 @@
 import { useSelector } from "react-redux";
 import { TRootState } from "../Store/BigPie";
-import { Button, Card } from "flowbite-react";
-import { useNavigate } from "react-router-dom";
+import { Card } from "flowbite-react";
 
 const Profile = () => {
     const user = useSelector((state: TRootState) => state.UserSlice.user);
-    const nav = useNavigate();
-
-    const navToEdit = () => {
-        nav('/edituser');
-    }
 
     return (
         <Card>
@@ -41,9 +35,6 @@ const Profile = () => {
                                 Status: {user?.isBusiness ? 'Business' : 'Regular'}
                             </p>
                         </div>
-                        <Button onClick={() => navToEdit()}>
-                            Edit User
-                        </Button>
                     </Card>
 
                 </div>

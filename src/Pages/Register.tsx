@@ -4,8 +4,13 @@ import { joiResolver } from "@hookform/resolvers/joi"
 import axios from "axios"
 import Swal from 'sweetalert2'
 import RegisterSchema from "../Validation/RegisterSchema.joi"
+import { useNavigate } from "react-router-dom"
 
 const Register = () => {
+
+    const nav = useNavigate();
+
+
     const initialData = {
         "name": {
             "first": "",
@@ -52,6 +57,7 @@ const Register = () => {
                 background: '#fff',
                 iconColor: '#28a745',
             })
+            nav('/');
         }
         catch {
             Swal.fire({

@@ -14,7 +14,6 @@ import CreateCard from "./Pages/CreateCard";
 import Profile from "./Pages/Profile";
 import RouteGuard from "./Components/Shared/RouteGuard";
 import CRM from "./Pages/CRM";
-import EditProfile from "./Pages/EditProfile";
 
 
 
@@ -31,7 +30,6 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/card/:id" element={<CardDetails />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/edituser" element={<EditProfile />} />
           <Route path="/about" element={<About />} />
           <Route path="*" element={<Navigate to="/" />} />
 

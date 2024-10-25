@@ -14,10 +14,21 @@ const Favorites = () => {
     const user = useSelector((state: TRootState) => state.UserSlice);
 
     const getCards = async () => {
-        const res = await axios.get(
-            "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards",
-        );
-        setCards(res.data);
+        try {
+            const res = await axios.get(
+                "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards",
+            );
+            setCards(res.data);
+        } catch {
+            Swal.fire({
+                title: "failed!",
+                icon: "error",
+                timerProgressBar: true,
+                timer: 2000,
+                toast: true,
+                showCloseButton: true,
+            });
+        }
     };
 
     const SearchWord = useSelector((state: TRootState) => state.SearchSlice.search);
@@ -88,34 +99,38 @@ const Favorites = () => {
     const navToCard = (id: string) => {
         nav("/card/" + id);
     }
+
+
     return (
-        <>
+        <div>
             <div className="p-8 font-sans h-[25vh] bg-sky-200 dark:bg-gray-500 dark:shadow-lg">
-                <div className="text-center dark:text-white ">
+                <div className="text-center dark:text-white">
                     <h1 className="m-3 text-6xl">Cards Page</h1>
-                    <p className="text-2xl ">Here you can find business card from all categories</p>
+                    <p className="text-2xl">Here you can find cards that you've liked</p>
                 </div>
             </div>
+
             <div className="flex flex-wrap justify-center gap-5 m-5">
                 {searchCards()!.map((item: TCard) => (
-                    <Card key={item._id}
-                        className="w-[90vw] sm:w-[70vw] md:w-[50vw] lg:w-[40vw] xl:w-[30vw]"
-                    >
+                    <Card key={item._id} className="w-[90vw] sm:w-[70vw] md:w-[50vw] lg:w-[40vw] xl:w-[30vw]">
                         <img
                             className="h-[50vw] sm:h-[40vw] md:h-[30vw] lg:h-[25vw] xl:h-[20vw]"
                             src={item.image.url}
                             onClick={() => navToCard(item._id)}
-                            alt={item.image.alt} />
+                            alt={item.image.alt}
+                        />
                         <h1 className="text-2xl dark:text-white">{item.title}</h1>
                         <h4 className="text-lg dark:text-white">{item.subtitle}</h4>
                         <p className="text-sm dark:text-white">{item.description}</p>
                         <hr />
                         <div className="flex gap-4">
-                            {user.user && <FaHeart
-                                color={!isLikedCard(item) ? 'black' : 'red'}
-                                onClick={() => likeUnlikeCard(item)}
-                                className="cursor-pointer"
-                            />}
+                            {user.user && (
+                                <FaHeart
+                                    color={!isLikedCard(item) ? 'black' : 'red'}
+                                    onClick={() => likeUnlikeCard(item)}
+                                    className="cursor-pointer"
+                                />
+                            )}
                             <a href={`tel:${item.phone}`} className="ml-2">
                                 <FaPhoneAlt className="cursor-pointer" />
                             </a>
@@ -123,9 +138,9 @@ const Favorites = () => {
                     </Card>
                 ))}
             </div>
+        </div>
+    );
 
-        </>
-    )
 
 }
 
