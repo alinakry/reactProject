@@ -1,6 +1,6 @@
 export const About = () => {
     return (
-        <div>
+        <div className="max-h-full">
             <h2 className="m-4 text-3xl text-center">About Us</h2>
             <p className="p-4 text-xl">Welcome to BCard, your ultimate solution for creating, browsing, and managing business cards with ease. Our innovative platform is designed to cater to professionals and businesses of all sizes, offering a seamless and efficient way to handle all your business card needs.</p>
             <h2 className="m-4 text-3xl text-center">Our Mission</h2>
