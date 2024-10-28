@@ -55,6 +55,7 @@ Creating Cards: Use the interface to create new cards. You can like or unlike ca
 Viewing Details: Click on a card image to view detailed information about that card.
 Profile Editing: Go to your profile to update your information.
 Admin Access: Admin users can log in to access the CRM section for user management.
+(email: admin@gmail.com; password: Abc!123Abc);
 
 
 Technologies Used
